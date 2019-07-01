@@ -56,7 +56,7 @@ class App extends React.Component {
     return (
       <div>
         <GameInfo playersTurn={this.state.playersTurn}/>
-        <Board startNewGame={this.startNewGame.bind(this)} flipPiece={this.flipPiece.bind(this)}/>
+        <Board board={this.state.board} startNewGame={this.startNewGame.bind(this)} flipPiece={this.flipPiece.bind(this)}/>
       </div>
     )
   }
