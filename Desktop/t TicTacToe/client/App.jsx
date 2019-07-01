@@ -49,8 +49,19 @@ class App extends React.Component {
           gameOver: true,
         })
       };
+      if (this.checkMajorDiagonals(newBoard, 1) === true) {
+        console.log('Congrats, player 1 wins on diagonals!')
+        this.setState({
+          gameOver: true,
+        })
+      };
+      if (this.checkMinorDiagonals(newBoard, 1) === true) {
+        console.log('Congrats, player 1 wins on diagonals!')
+        this.setState({
+          gameOver: true,
+        })
+      };
     } else {
-      console.log('here!');
       if (this.checkRows(newBoard, 2) === true) {
         console.log('Congrats, player 2 wins on rows!')
         this.setState({
@@ -59,6 +70,18 @@ class App extends React.Component {
       };
       if (this.checkVerticals(newBoard, 2) === true) {
         console.log('Congrats, player 2 wins on verticals!')
+        this.setState({
+          gameOver: true,
+        })
+      };
+      if (this.checkMajorDiagonals(newBoard, 2) === true) {
+        console.log('Congrats, player 2 wins on diagonals!')
+        this.setState({
+          gameOver: true,
+        })
+      };
+      if (this.checkMinorDiagonals(newBoard, 2) === true) {
+        console.log('Congrats, player 2 wins on diagonals!')
         this.setState({
           gameOver: true,
         })
@@ -86,7 +109,6 @@ class App extends React.Component {
   
     for (var k = 0; k < 9; k += 3) {
       for (var i = 0; i < 3; i++) {
-        console.log(`i: ${i}, k: ${k}`)
         if (lastBoard[i + k] !== player) {
           isSolved = false;
         } else {
@@ -107,7 +129,6 @@ class App extends React.Component {
   
     for (var i = 0; i < 3; i++) {
       for (var k = 0; k < 9; k += 3) {
-        console.log(`i: ${i}, k: ${k}`)
         if (lastBoard[i + k] !== player) {
           isSolved = false;
         } else {
@@ -118,6 +139,38 @@ class App extends React.Component {
         }
       }
       threeInARow = 0;
+    };
+    return isSolved;
+  }
+
+  checkMajorDiagonals(lastBoard, player) {
+    var threeInARow = 0;
+    var isSolved = false;
+    for (var i = 0; i < 9; i += 4) {
+      if (lastBoard[i] !== player) {
+        return false;
+      } else {
+        threeInARow++;
+        if (threeInARow === 3) {
+          return true;
+        }
+      }
+    };
+    return isSolved;
+  }
+
+  checkMinorDiagonals(lastBoard, player) {
+    var threeInARow = 0;
+    var isSolved = false;
+    for (var i = 2; i < 7; i += 2) {
+      if (lastBoard[i] !== player) {
+        return false;
+      } else {
+        threeInARow++;
+        if (threeInARow === 3) {
+          return true;
+        }
+      }
     };
     return isSolved;
   }
